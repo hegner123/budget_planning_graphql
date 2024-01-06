@@ -1,13 +1,14 @@
-package com.budget_planning.budget_planning_graphql;
+package com.budget_planning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BudgetPlanningGraphqlApplication {
+public class BpGraphqlMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BudgetPlanningGraphqlApplication.class, args);
+		SpringApplication.run(BpGraphqlMain.class, args);
+		System.out.println("Hello World!");
 	}
 
 }
