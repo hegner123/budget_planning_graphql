@@ -1,0 +1,9 @@
+query expenses($id: ID) {
+  expensesByUser(id: $id) {
+    id
+    amount
+    repeated
+    date
+    user_id
+  }
+}

@@ -1,4 +1,4 @@
-package com.budget_planning.budget_planning_graphql;
+package com.budget_planning;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

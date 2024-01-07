@@ -1,7 +1,0 @@
-type Income {
-  id: ID!
-  amount: Float!
-  description: String!
-  date: String!
-  user: User!
-}
