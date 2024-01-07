@@ -1,4 +1,4 @@
-package com.budget_planning.resolver;
+package com.budget_planning.resolver.query;
 
 import java.util.Optional;
 
@@ -12,19 +12,19 @@ import graphql.scalars.ExtendedScalars;
 import graphql.schema.GraphQLScalarType;
 
 @Component
-public class Query implements GraphQLQueryResolver {
+public class BalanceQuery implements GraphQLQueryResolver {
     private BalanceRepository balanceRepository;
 
     GraphQLScalarType longScalar = ExtendedScalars.newAliasedScalar("Long")
             .aliasedScalar(ExtendedScalars.GraphQLLong)
             .build();
 
-    public Query(BalanceRepository balanceRepository) {
+    public BalanceQuery(BalanceRepository balanceRepository) {
         this.balanceRepository = balanceRepository;
 
     }
 
-    public Balance getBalanceById(Integer id) {
+    public Balance getBalance(Integer id) {
         Optional<Balance> optBalance = balanceRepository.findById(id);
 
         if (optBalance.isPresent()) {
@@ -32,6 +32,14 @@ public class Query implements GraphQLQueryResolver {
         } else {
             return null;
         }
+    }
+
+    public Iterable<Balance> getBalances() {
+        return balanceRepository.findAll();
+    }
+
+    public Iterable<Balance> getBalancesByUserid(String userid) {
+        return balanceRepository.findByUserid(userid);
     }
 
 }

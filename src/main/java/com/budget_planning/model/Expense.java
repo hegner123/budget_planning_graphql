@@ -19,17 +19,17 @@ public class Expense {
     @Column(name = "date")
     private String date;
 
-    @Column(name = "user_id")
-    private String user_id;
+    @Column(name = "userid")
+    private String userid;
 
     public Expense() {
     }
 
-    public Expense(Float amount, String repeated, String date, String user_id) {
+    public Expense(Float amount, String repeated, String date, String userid) {
         this.amount = amount;
         this.repeated = repeated;
         this.date = date;
-        this.user_id = user_id;
+        this.userid = userid;
     }
 
     public Float getAmount() {
@@ -45,7 +45,7 @@ public class Expense {
     }
 
     public String getUser() {
-        return this.user_id;
+        return this.userid;
     }
 
     public void setAmount(Float amount) {
@@ -60,8 +60,8 @@ public class Expense {
         this.date = date;
     }
 
-    public void setUser(String user_id) {
-        this.user_id = user_id;
+    public void setUser(String userid) {
+        this.userid = userid;
     }
 
 }

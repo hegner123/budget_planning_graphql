@@ -16,16 +16,16 @@ public class Balance {
     @Column(name = "date")
     private String date;
 
-    @Column(name = "user_id")
-    private String user_id;
+    @Column(name = "userid")
+    private String userid;
 
     public Balance() {
     }
 
-    public Balance(Float amount, String date, String user_id) {
+    public Balance(Float amount, String date, String userid) {
         this.amount = amount;
         this.date = date;
-        this.user_id = user_id;
+        this.userid = userid;
     }
 
     public Integer getId() {
@@ -41,7 +41,7 @@ public class Balance {
     }
 
     public String getUser() {
-        return this.user_id;
+        return this.userid;
     }
 
     public void setAmount(Float amount) {
@@ -52,8 +52,8 @@ public class Balance {
         this.date = date;
     }
 
-    public void setUser(String user_id) {
-        this.user_id = user_id;
+    public void setUser(String userid) {
+        this.userid = userid;
     }
 
 }

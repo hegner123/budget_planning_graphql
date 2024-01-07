@@ -4,6 +4,6 @@ query expenses($id: ID) {
     amount
     repeated
     date
-    user_id
+    userid
   }
 }

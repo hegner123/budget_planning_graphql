@@ -6,4 +6,6 @@ import com.budget_planning.model.Income;
 
 public interface IncomeRepository extends JpaRepository<Income, Integer> {
 
+    public Iterable<Income> findByUserid(String userid);
+
 }

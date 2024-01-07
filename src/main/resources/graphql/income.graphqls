@@ -1,0 +1,31 @@
+type Income {
+  id: ID!
+  amount: Float!
+  description: String!
+  date: String!
+  user: User!
+}
+
+extend type Query {
+  income(id: ID!): Income!
+  incomes: [Income!]!
+  incomesByUserid(userid: String): [Income!]!
+}
+
+extend type Mutation {
+  createIncome(
+    amount: Float!
+    date: String!
+    repeated: String!
+    userid: String!
+  ): Income!
+  updateIncome(
+    id: ID!
+    amount: Float!
+    date: String!
+    repeated: String!
+    userid: String!
+  ): Income!
+  deleteIncomeById(id: ID!): Boolean!
+  deleteIncomeByUserid(userid: String!): Boolean!
+}

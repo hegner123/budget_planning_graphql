@@ -1,34 +1,30 @@
-package com.budget_planning.resolver;
+package com.budget_planning.resolver.mutation;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.budget_planning.model.*;
-import com.budget_planning.repository.*;
+import com.budget_planning.model.Balance;
+import com.budget_planning.repository.BalanceRepository;
 
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import jakarta.persistence.EntityNotFoundException;
 
 @Component
-public class Mutation implements GraphQLMutationResolver {
+public class BalanceMutation implements GraphQLMutationResolver {
   private BalanceRepository balanceRepository;
-  // private ExpenseRepository expenseRepository;
-  // private IncomeRepository incomeRepository;
 
-  public Mutation(BalanceRepository balanceRepository, ExpenseRepository expenseRepository,
-      IncomeRepository incomeRepository) {
+  public BalanceMutation(BalanceRepository balanceRepository) {
     this.balanceRepository = balanceRepository;
-    // this.expenseRepository = expenseRepository;
-    // this.incomeRepository = incomeRepository;
+
   }
 
-  public Balance addBalance(Float amount, String date, String user_id) {
+  public Balance addBalance(Float amount, String date, String userid) {
     try {
       Balance balance = new Balance();
       balance.setAmount(amount);
       balance.setDate(date);
-      balance.setUser(user_id);
+      balance.setUser(userid);
 
       balanceRepository.save(balance);
 
@@ -50,7 +46,7 @@ public class Mutation implements GraphQLMutationResolver {
     }
   }
 
-  public Balance updateBalance(Integer id, Float amount, String date, String user_id)
+  public Balance updateBalance(Integer id, Float amount, String date, String userid)
       throws EntityNotFoundException {
     Optional<Balance> optBalance = balanceRepository.findById(id);
 
@@ -61,8 +57,8 @@ public class Mutation implements GraphQLMutationResolver {
         balance.setAmount(amount);
       if (date != null)
         balance.setDate(date);
-      if (user_id != null)
-        balance.setUser(user_id);
+      if (userid != null)
+        balance.setUser(userid);
 
       balanceRepository.save(balance);
       return balance;

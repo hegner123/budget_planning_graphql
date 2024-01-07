@@ -1,0 +1,27 @@
+type Income {
+  id: ID!
+  amount: Float!
+  repeated: String!
+  date: String!
+  userid: String
+}
+
+type Balance {
+  id: ID!
+  amount: Float!
+  date: String!
+  userid: String
+}
+
+type Query {
+  balance(id: ID): Balance!
+  balances: [Balance!]!
+  balancesByUserid(userid: String): [Balance!]!
+}
+
+type Mutation {
+  addBalance(amount: Float, date: String!, userid: String): Balance!
+  updateBalance(id: ID, amount: Float, date: String!, userid: String): Balance!
+  deleteBalanceById(id: ID): Boolean!
+  deleteBalancesByUserid(userid: String): Boolean!
+}
