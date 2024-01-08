@@ -8,23 +8,20 @@ import com.budget_planning.model.Income;
 import com.budget_planning.repository.IncomeRepository;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
-import graphql.scalars.ExtendedScalars;
-import graphql.schema.GraphQLScalarType;
+
 
 @Component
 public class IncomeQuery implements GraphQLQueryResolver {
     private IncomeRepository incomeRepository;
 
-    GraphQLScalarType longScalar = ExtendedScalars.newAliasedScalar("Long")
-            .aliasedScalar(ExtendedScalars.GraphQLLong)
-            .build();
+
 
     public IncomeQuery(IncomeRepository incomeRepository) {
         this.incomeRepository = incomeRepository;
 
     }
 
-    public Income getIncomeById(Integer id) {
+    public Income income(Integer id) {
         Optional<Income> optIncome = incomeRepository.findById(id);
 
         if (optIncome.isPresent()) {
@@ -34,11 +31,11 @@ public class IncomeQuery implements GraphQLQueryResolver {
         }
     }
 
-    public Iterable<Income> getIncomes() {
+    public Iterable<Income> incomes() {
         return incomeRepository.findAll();
     }
 
-    public Iterable<Income> getIncomesByUserid(String userid) {
+    public Iterable<Income> incomesByUserid(String userid) {
         return incomeRepository.findByUserid(userid);
     }
 

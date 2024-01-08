@@ -26,7 +26,7 @@ public class IncomeMutation implements GraphQLMutationResolver {
             income.setAmount(amount);
             income.setDate(date);
             income.setRepeated(repeated);
-            income.setUser(userid);
+            income.setUserid(userid);
 
             incomeRepository.save(income);
 
@@ -38,15 +38,7 @@ public class IncomeMutation implements GraphQLMutationResolver {
 
     }
 
-    public Boolean deleteIncomeById(Integer id) {
-        try {
-            incomeRepository.deleteById(id);
-            return true;
 
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     public Income updateIncome(Integer id, Float amount, String date, String repeated, String userid)
             throws EntityNotFoundException {
@@ -62,12 +54,32 @@ public class IncomeMutation implements GraphQLMutationResolver {
             if (repeated != null)
                 income.setRepeated(repeated);
             if (userid != null)
-                income.setUser(userid);
+                income.setUserid(userid);
 
             incomeRepository.save(income);
             return income;
         }
 
         throw new EntityNotFoundException("Not found Income to update!");
+    }
+
+    public Boolean deleteIncomeById(Integer id) {
+        try {
+            incomeRepository.deleteById(id);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean deleteIncomesByUserid(String userid) {
+        try {
+            incomeRepository.deleteAllByUserid(userid);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

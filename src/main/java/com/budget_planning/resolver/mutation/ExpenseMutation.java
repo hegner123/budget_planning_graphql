@@ -25,7 +25,7 @@ public class ExpenseMutation implements GraphQLMutationResolver {
       expense.setAmount(amount);
       expense.setDate(date);
       expense.setRepeated(repeated);
-      expense.setUser(userid);
+      expense.setUserid(userid);
 
       expenseRepository.save(expense);
 
@@ -37,15 +37,7 @@ public class ExpenseMutation implements GraphQLMutationResolver {
 
   }
 
-  public Boolean deleteExpenseById(Integer id) {
-    try {
-      expenseRepository.deleteById(id);
-      return true;
 
-    } catch (Exception e) {
-      return false;
-    }
-  }
 
   public Expense updateExpense(Integer id, Float amount, String date, String repeated, String userid)
       throws EntityNotFoundException {
@@ -61,12 +53,32 @@ public class ExpenseMutation implements GraphQLMutationResolver {
       if (repeated != null)
         expense.setRepeated(repeated);
       if (userid != null)
-        expense.setUser(userid);
+        expense.setUserid(userid);
 
       expenseRepository.save(expense);
       return expense;
     }
 
     throw new EntityNotFoundException("Not found Expense to update!");
+  }
+
+  public Boolean deleteExpenseById(Integer id) {
+    try {
+      expenseRepository.deleteById(id);
+      return true;
+
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  public Boolean deleteExpensesByUserid(String userid) {
+    try {
+      expenseRepository.deleteAllByUserid(userid);
+      return true;
+
+    } catch (Exception e) {
+      return false;
+    }
   }
 }

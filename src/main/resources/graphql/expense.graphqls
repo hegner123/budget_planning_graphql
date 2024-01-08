@@ -7,13 +7,13 @@ type Expense {
 }
 
 extend type Query {
-  expenses: [Expense]
   expense(id: ID!): Expense
+  expenses: [Expense]
   expensesByUserid(userid: String!): [Expense]
 }
 
 extend type Mutation {
-  createExpense(
+  addExpense(
     amount: Float!
     repeated: String!
     date: String!

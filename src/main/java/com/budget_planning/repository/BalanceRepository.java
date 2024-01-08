@@ -7,4 +7,6 @@ import com.budget_planning.model.Balance;
 public interface BalanceRepository extends JpaRepository<Balance, Integer> {
 
     public Iterable<Balance> findByUserid(String userid);
+
+    public void deleteAllByUserid(String userid);
 }

@@ -24,7 +24,7 @@ public class BalanceMutation implements GraphQLMutationResolver {
       Balance balance = new Balance();
       balance.setAmount(amount);
       balance.setDate(date);
-      balance.setUser(userid);
+      balance.setUserid(userid);
 
       balanceRepository.save(balance);
 
@@ -36,15 +36,7 @@ public class BalanceMutation implements GraphQLMutationResolver {
 
   }
 
-  public Boolean deleteBalanceById(Integer id) {
-    try {
-      balanceRepository.deleteById(id);
-      return true;
 
-    } catch (Exception e) {
-      return false;
-    }
-  }
 
   public Balance updateBalance(Integer id, Float amount, String date, String userid)
       throws EntityNotFoundException {
@@ -58,12 +50,32 @@ public class BalanceMutation implements GraphQLMutationResolver {
       if (date != null)
         balance.setDate(date);
       if (userid != null)
-        balance.setUser(userid);
+        balance.setUserid(userid);
 
       balanceRepository.save(balance);
       return balance;
     }
 
     throw new EntityNotFoundException("Not found Balance to update!");
+  }
+
+  public Boolean deleteBalanceById(Integer id) {
+    try {
+      balanceRepository.deleteById(id);
+      return true;
+
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  public Boolean deleteBalancesByUserid(String userid) {
+    try {
+      balanceRepository.deleteAllByUserid(userid);
+      return true;
+
+    } catch (Exception e) {
+      return false;
+    }
   }
 }

@@ -8,23 +8,18 @@ import com.budget_planning.model.Balance;
 import com.budget_planning.repository.BalanceRepository;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
-import graphql.scalars.ExtendedScalars;
-import graphql.schema.GraphQLScalarType;
+
 
 @Component
 public class BalanceQuery implements GraphQLQueryResolver {
     private BalanceRepository balanceRepository;
-
-    GraphQLScalarType longScalar = ExtendedScalars.newAliasedScalar("Long")
-            .aliasedScalar(ExtendedScalars.GraphQLLong)
-            .build();
 
     public BalanceQuery(BalanceRepository balanceRepository) {
         this.balanceRepository = balanceRepository;
 
     }
 
-    public Balance getBalance(Integer id) {
+    public Balance balance(Integer id) {
         Optional<Balance> optBalance = balanceRepository.findById(id);
 
         if (optBalance.isPresent()) {
@@ -34,11 +29,11 @@ public class BalanceQuery implements GraphQLQueryResolver {
         }
     }
 
-    public Iterable<Balance> getBalances() {
+    public Iterable<Balance> balances() {
         return balanceRepository.findAll();
     }
 
-    public Iterable<Balance> getBalancesByUserid(String userid) {
+    public Iterable<Balance> balancesByUserid(String userid) {
         return balanceRepository.findByUserid(userid);
     }
 

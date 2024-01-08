@@ -44,7 +44,7 @@ public class Income {
         return this.date;
     }
 
-    public String getUser() {
+    public String getUserid() {
         return this.userid;
     }
 
@@ -60,7 +60,7 @@ public class Income {
         this.date = date;
     }
 
-    public void setUser(String userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 
